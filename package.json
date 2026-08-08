@@ -1,0 +1,19 @@
+{
+  "name": "baxibrothers-root",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev:backend": "npm run dev --prefix artifacts/api-server",
+    "dev:frontend": "npm run dev --prefix artifacts/baxi-brothers",
+    "dev": "concurrently -n API,WEB -c \"blue.bold,green.bold\" \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "build": "npm run build --prefix artifacts/api-server && npm run build --prefix artifacts/baxi-brothers"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^8.0.0",
+    "prettier": "^3.9.6",
+    "typescript": "~5.9.3"
+  }
+}

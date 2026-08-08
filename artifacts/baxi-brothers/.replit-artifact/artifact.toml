@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Baxi Brothers"
+description = "The current Baxi Brothers home-textiles storefront, recreated from the uploaded project for preview and iterative design changes."
+version = "1.0.0"
+id = "artifacts/baxi-brothers"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20302
+
+[services.development]
+run = "pnpm --filter @workspace/baxi-brothers run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/baxi-brothers", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/baxi-brothers/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20302"
+BASE_PATH = "/"
