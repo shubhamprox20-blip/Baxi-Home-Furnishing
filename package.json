@@ -7,7 +7,7 @@
     "dev:backend": "npm run dev --prefix artifacts/api-server",
     "dev:frontend": "npm run dev --prefix artifacts/baxi-brothers",
     "dev": "concurrently -n API,WEB -c \"blue.bold,green.bold\" \"npm:dev:backend\" \"npm:dev:frontend\"",
-    "build": "npm run build --prefix artifacts/baxi-brothers"
+    "build": "npm install --prefix artifacts/baxi-brothers && npm run build --prefix artifacts/baxi-brothers"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
