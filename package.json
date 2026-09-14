@@ -2,6 +2,10 @@
   "name": "baxibrothers-root",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+  "artifacts/*",
+  "lib/*"
+],
   "license": "MIT",
   "scripts": {
     "dev:backend": "npm run dev --prefix artifacts/api-server",
