@@ -6,6 +6,7 @@ import { useCart } from '@/context/cart-context';
 import { useClerk, useUser } from '@clerk/react';
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const LOGO_URL = 'https://res.cloudinary.com/zdxx02hz/image/upload/v1786570386/WhatsApp_Image_2026-08-10_at_5.48.15_PM.jpg';
 
 export function StorefrontHeader() {
   const { data: categories } = useListCategories();
@@ -18,9 +19,15 @@ export function StorefrontHeader() {
       {/* Main bar */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2 shrink-0" data-testid="link-home">
+          {/* Logo + Site Title */}
+          <Link href="/" className="flex items-center gap-3 shrink-0" data-testid="link-home">
+            <img
+              src={LOGO_URL}
+              alt="Baxi Home Furnishing Logo"
+              className="h-9 w-auto rounded-md object-contain"
+            />
             <div className="text-2xl font-bold tracking-tight text-primary">
-              Baxi Brothers
+              Baxi Home Furnishing
             </div>
           </Link>
 

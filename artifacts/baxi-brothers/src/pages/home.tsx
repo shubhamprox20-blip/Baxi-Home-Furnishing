@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useListCategories, useGetFeaturedProducts } from '@workspace/api-client-react';
 import { StorefrontHeader } from '@/components/storefront-header';
 import { ProductCard } from '@/components/product-card';
@@ -18,21 +19,54 @@ export default function Home() {
   const { data: categories, isLoading: categoriesLoading } = useListCategories();
   const { data: featuredProducts, isLoading: featuredLoading } = useGetFeaturedProducts();
 
-  return (
-    <div className="min-h-screen bg-background">
-      <StorefrontHeader />
+  // --- Fetch Dynamic Hero Background Settings ---
+  const { data: heroBgData } = useQuery({
+    queryKey: ['hero-bg'],
+    queryFn: async () => {
+      const res = await fetch('/api/settings/hero-bg');
+      if (!res.ok) return { bgUrl: '' };
+      return res.json();
+    },
+  });
+
+  const heroBgUrl = heroBgData?.bgUrl;
+
+ return (
+  <div className="min-h-screen bg-background">
+
+    {/* Top Announcement Bar */}
+    <div className="w-full bg-[#245b82] text-white text-center py-2 text-sm font-medium">
+      🎁 Big Savings Alert! Up to 70% OFF + free shipping above ₹1499/-
+    </div>
+
+    <StorefrontHeader />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-accent/5 to-background py-16 sm:py-24 fabric-texture">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Dynamic Hero Section */}
+      <section
+        className="relative bg-cover bg-center bg-no-repeat py-16 sm:py-24 transition-all duration-300 overflow-hidden"
+        style={{
+          backgroundImage: heroBgUrl ? `url("${heroBgUrl}")` : undefined,
+        }}
+      >
+        {/* Default gradient fallback if no image URL is set */}
+        {!heroBgUrl && (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background fabric-texture -z-10" />
+        )}
+
+        {/* Soft overlay to ensure readability when an image is set */}
+        {heroBgUrl && (
+          <div className="absolute inset-0 bg-background/60 backdrop-blur-[1px] -z-10" />
+        )}
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
               Quality Home Textiles,
               <br />
-              <span className="text-primary">Trusted by Families</span>
+              <span className="text-primary">Trusted by families since 1959</span>
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl">
-              From cozy bedsheets to elegant curtains, discover premium textiles that bring warmth and comfort to your home.
+              A wide range of textiles for your home, guaranteed quality and trust elevating your spaces into comfortable places.
             </p>
             <Button size="lg" asChild data-testid="button-browse-categories">
               <Link href="#categories" className="group">
@@ -136,6 +170,8 @@ export default function Home() {
           )}
         </div>
       </section>
+      
+
 
       {/* Footer */}
       <footer className="border-t bg-card pt-14 pb-8">
@@ -144,9 +180,9 @@ export default function Home() {
 
             {/* Brand */}
             <div className="lg:col-span-1">
-              <h3 className="text-2xl font-bold text-foreground mb-3">Baxi Brothers</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-3">Baxi Home Furnishing</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Premium home textiles crafted for comfort and durability. Trusted by families across Pakistan.
+                Premium home textiles crafted for comfort and durability. Trusted by families across India
               </p>
             </div>
 
@@ -180,12 +216,12 @@ export default function Home() {
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                  <span>+92 300 0000000</span>
+                  <span>+91 300 0000000</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <MessageCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                   <a
-                    href="https://wa.me/923000000000"
+                    href="https://wa.me/913000000000"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-primary transition-colors"
@@ -195,7 +231,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Mail className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                  <a href="mailto:info@baxibrothers.pk" className="hover:text-primary transition-colors">
+                  <a href="mailto:info@baxibrothers.in" className="hover:text-primary transition-colors">
                     info@baxibrothers.in
                   </a>
                 </li>
