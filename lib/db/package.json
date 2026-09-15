@@ -4,9 +4,17 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./schema": "./src/schema/index.ts"
+  ".": {
+    "types": "./src/index.ts",
+    "import": "./src/index.ts",
+    "default": "./src/index.ts"
   },
+  "./schema": {
+    "types": "./src/schema/index.ts",
+    "import": "./src/schema/index.ts",
+    "default": "./src/schema/index.ts"
+  }
+},
   "scripts": {
     "push": "drizzle-kit push --config ./drizzle.config.ts",
     "push-force": "drizzle-kit push --force --config ./drizzle.config.ts"
