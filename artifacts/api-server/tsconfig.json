@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "CommonJS",
+    "module": "ES2022",
     "moduleResolution": "bundler",
     "lib": ["ES2022"],
     "outDir": "./dist",
@@ -24,6 +24,13 @@
       "@workspace/api-client-react": ["../../lib/api-client-react/src/index.ts"]
     }
   },
-  "include": ["src/**/*", "../../lib/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*",
+    "../../lib/api-zod/src/**/*",
+    "../../lib/db/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
