@@ -1,11 +1,11 @@
 import { Router, type IRouter, type Request } from "express";
 import { and, desc, eq, inArray } from "drizzle-orm";
-import { db } from "../../../../lib/db/src";
+import { db } from "@workspace/db";
 import {
   orderItemsTable,
   ordersTable,
   productsTable,
-} from "../../../../lib/db/src/schema";
+} from "@workspace/db/schema";
 import {
   CreateOrderBody,
   GetAdminOrderParams,

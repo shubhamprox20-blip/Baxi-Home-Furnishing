@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { eq, sql } from "drizzle-orm";
-import { db } from "../../../../lib/db/src";
-import { categoriesTable, productsTable } from "../../../../lib/db/src/schema";
+import { db } from "@workspace/db";
+import { categoriesTable, productsTable } from "@workspace/db/schema";
 import {
   CreateCategoryBody,
   GetCategoryParams,
