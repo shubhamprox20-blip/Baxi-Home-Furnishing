@@ -1,13 +1,14 @@
 import { Router, type IRouter } from "express";
 import { eq, sql } from "drizzle-orm";
-import { db, categoriesTable, productsTable } from "../../../../lib/db/src";
+import { db } from "../../../../lib/db/src";
+import { categoriesTable, productsTable } from "../../../../lib/db/src/schema";
 import {
   CreateCategoryBody,
   GetCategoryParams,
   UpdateCategoryBody,
   UpdateCategoryParams,
   DeleteCategoryParams,
-} from "../../../../lib/api-zod/src";
+} from "../../../../lib/api-zod/src/generated/api";
 
 const router: IRouter = Router();
 
