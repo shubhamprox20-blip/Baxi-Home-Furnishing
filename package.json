@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-  "artifacts/*",
-  "lib/*"
-],
+    "artifacts/*",
+    "lib/*"
+  ],
   "license": "MIT",
   "scripts": {
     "dev:backend": "npm run dev --prefix artifacts/api-server",
     "dev:frontend": "npm run dev --prefix artifacts/baxi-brothers",
     "dev": "concurrently -n API,WEB -c \"blue.bold,green.bold\" \"npm:dev:backend\" \"npm:dev:frontend\"",
-    "build": "npm install --prefix artifacts/baxi-brothers && npm run build --prefix artifacts/baxi-brothers"
+    "build": "npm run build --workspaces --if-present"
+  },
+  "overrides": {
+    "drizzle-orm": "0.38.3"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
