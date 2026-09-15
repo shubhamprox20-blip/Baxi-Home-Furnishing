@@ -1,6 +1,6 @@
 import { Router, type IRouter, type Request } from "express";
 import { and, desc, eq, inArray } from "drizzle-orm";
-import { db, orderItemsTable, ordersTable, productsTable } from "@workspace/db";
+import { db, orderItemsTable, ordersTable, productsTable } from "../../../../lib/db/src";
 import {
   CreateOrderBody,
   GetAdminOrderParams,
@@ -9,7 +9,7 @@ import {
   ListOrdersResponse,
   UpdateAdminOrderBody,
   UpdateAdminOrderParams,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src";
 import { getRequiredUserId, requireAuth } from "../middlewares/requireAuth";
 
 const router: IRouter = Router();

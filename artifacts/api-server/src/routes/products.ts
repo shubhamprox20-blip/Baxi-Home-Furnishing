@@ -1,6 +1,6 @@
 import { Router, type IRouter } from "express";
 import { eq, ilike, and, sql } from "drizzle-orm";
-import { db, productsTable, categoriesTable } from "@workspace/db";
+import { db, productsTable, categoriesTable } from "../../../../lib/db/src";
 import {
   CreateProductBody,
   GetProductParams,
@@ -8,7 +8,7 @@ import {
   UpdateProductParams,
   DeleteProductParams,
   ListProductsQueryParams,
-} from "@workspace/api-zod";
+} from "../../../../lib/api-zod/src";
 
 const router: IRouter = Router();
 
